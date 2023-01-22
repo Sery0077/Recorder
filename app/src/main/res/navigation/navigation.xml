@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/recordFragment">
+
+    <fragment
+        android:id="@+id/recordFragment"
+        android:name="sery.vlasenko.recorder.ui.record.RecordFragment"
+        android:label="fragment_record"
+        tools:layout="@layout/fragment_record"/>
+
+    <fragment
+        android:id="@+id/listRecordFragment"
+        android:name="sery.vlasenko.recorder.ui.listRecords.ListRecordFragment"
+        android:label="list_record_fragment"
+        tools:layout="@layout/fragment_list_record"/>
+
+</navigation>
