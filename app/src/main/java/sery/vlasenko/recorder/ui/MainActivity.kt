@@ -6,6 +6,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import sery.vlasenko.recorder.R
+import sery.vlasenko.recorder.utils.services.RecordService
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -19,4 +20,6 @@ class MainActivity : AppCompatActivity() {
             findNavController(R.id.nav_host_fragment_container)
         )
     }
+
+    fun isServiceRunning(): Boolean = RecordService.isRunning
 }
