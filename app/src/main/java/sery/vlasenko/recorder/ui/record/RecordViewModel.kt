@@ -4,7 +4,6 @@ import android.app.Application
 import android.content.Context
 import android.os.CountDownTimer
 import android.os.SystemClock
-import android.util.TimeUtils
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -12,7 +11,6 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import java.util.Timer
 import java.util.concurrent.TimeUnit
 
 class RecordViewModel(app: Application) : AndroidViewModel(app) {

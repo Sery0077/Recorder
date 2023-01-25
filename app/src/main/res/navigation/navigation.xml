@@ -13,7 +13,7 @@
 
     <fragment
         android:id="@+id/listRecordFragment"
-        android:name="sery.vlasenko.recorder.ui.listRecords.ListRecordFragment"
+        android:name="sery.vlasenko.recorder.ui.listRecord.ListRecordFragment"
         android:label="list_record_fragment"
         tools:layout="@layout/fragment_list_record"/>
 

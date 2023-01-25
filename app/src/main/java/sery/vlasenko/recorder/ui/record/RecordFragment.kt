@@ -14,9 +14,8 @@ import android.view.WindowManager
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
-import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import sery.vlasenko.recorder.R
 import sery.vlasenko.recorder.database.RecordDatabaseDAO
 import sery.vlasenko.recorder.databinding.FragmentRecordBinding
@@ -25,15 +24,14 @@ import sery.vlasenko.recorder.utils.services.RecordService
 import java.io.File
 
 
-class RecordFragment : Fragment(R.layout.fragment_record) {
+class RecordFragment : Fragment() {
 
-    private lateinit var viewModel: RecordViewModel
+    private val viewModel by viewModels<RecordViewModel>()
+
     private lateinit var mainActivity: MainActivity
     private var database: RecordDatabaseDAO? = null
 
-    private var _binding: FragmentRecordBinding? = null
-    private val binding
-        get() = _binding!!
+    private lateinit var binding: FragmentRecordBinding
 
     private val requestPermission =
         registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
@@ -54,26 +52,29 @@ class RecordFragment : Fragment(R.layout.fragment_record) {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = DataBindingUtil.inflate<FragmentRecordBinding>(
+        binding = FragmentRecordBinding.inflate(
             inflater,
-            R.layout.fragment_record,
-            container, false
-        )
+            container,
+            false
+        ).apply {
+            viewModel = this@RecordFragment.viewModel
+        }
 
         mainActivity = activity as MainActivity
-
-        viewModel = ViewModelProvider(this).get(RecordViewModel::class.java)
-
-        binding.recordViewModel = viewModel
-        binding.lifecycleOwner = viewLifecycleOwner
 
         createChannel(
             getString(R.string.notification_channel_id),
             getString(R.string.notification_channel_name)
         )
 
-        setClickers()
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        binding.lifecycleOwner = this.viewLifecycleOwner
+
+        setClickers()
+        super.onViewCreated(view, savedInstanceState)
     }
 
     override fun onStart() {
