@@ -8,6 +8,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import sery.vlasenko.recorder.database.RecordDatabase
 import sery.vlasenko.recorder.databinding.FragmentListRecordBinding
+import sery.vlasenko.recorder.ui.player.PlayerFragment
+import sery.vlasenko.recorder.utils.EventObserver
 
 class ListRecordFragment : Fragment() {
 
@@ -43,6 +45,19 @@ class ListRecordFragment : Fragment() {
         viewDataBinding.lifecycleOwner = this.viewLifecycleOwner
 
         setupListAdapter()
+        setupNavigation()
+    }
+
+    private fun setupNavigation() {
+        viewModel.openRecordEvent.observe(viewLifecycleOwner, EventObserver {
+            openRecord(it)
+        })
+    }
+
+    private fun openRecord(filePath: String) {
+        val playerFragment = PlayerFragment.newInstance(filePath)
+
+        playerFragment.show(childFragmentManager, PlayerFragment.TAG)
     }
 
     private fun setupListAdapter() {

@@ -3,6 +3,7 @@ package sery.vlasenko.recorder.ui.listRecord
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import sery.vlasenko.recorder.database.RecordDatabaseDAO
+import sery.vlasenko.recorder.utils.UnknownViewModelClass
 
 class ListRecordViewModelFactory(
     private val dataSource: RecordDatabaseDAO
@@ -12,6 +13,6 @@ class ListRecordViewModelFactory(
         if (modelClass.isAssignableFrom(ListRecordViewModel::class.java)) {
             return ListRecordViewModel(dataSource) as T
         }
-        throw IllegalStateException("Unknown ViewModel Class $modelClass")
+        throw UnknownViewModelClass(modelClass.name)
     }
 }

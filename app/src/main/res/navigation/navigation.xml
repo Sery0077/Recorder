@@ -16,5 +16,10 @@
         android:name="sery.vlasenko.recorder.ui.listRecord.ListRecordFragment"
         android:label="list_record_fragment"
         tools:layout="@layout/fragment_list_record"/>
+    <dialog
+        android:id="@+id/playerFragment"
+        android:name="sery.vlasenko.recorder.ui.player.PlayerFragment"
+        android:label="fragment_player"
+        tools:layout="@layout/fragment_player" />
 
 </navigation>
